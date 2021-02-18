@@ -855,21 +855,21 @@
     eslint-plugin-import "^2.22.1"
     eslint-plugin-node "^9.2.0"
 
-"@cubejs-backend/query-orchestrator@^0.26.15":
-  version "0.26.15"
-  resolved "https://registry.yarnpkg.com/@cubejs-backend/query-orchestrator/-/query-orchestrator-0.26.15.tgz#4be24caa6131cb7e624b42ab45e6f12358ca909a"
-  integrity sha512-fTY65vBaVkjcxyjyKRMTsXKJh6Xk898w/pV5ekiFkZkOiSq/TVZPOFOfxh8LyQjK1EDNxhbGlxdt9WQzQyXVDQ==
+"@cubejs-backend/query-orchestrator@^0.26.16":
+  version "0.26.16"
+  resolved "https://registry.yarnpkg.com/@cubejs-backend/query-orchestrator/-/query-orchestrator-0.26.16.tgz#a2249501b10b229cd49841adab8698089d1b5de8"
+  integrity sha512-jQs3I3L1w0EoDdanQTz9llFpXGmOh/nrppnRTxp4lLM2zcXSzo/MD6pexj+hW8EKEWsNM8d5uiOnqXfgnPupfA==
   dependencies:
-    "@cubejs-backend/shared" "^0.26.15"
+    "@cubejs-backend/shared" "^0.26.16"
     generic-pool "^3.7.1"
     ioredis "^4.19.4"
     ramda "^0.27.0"
     redis "^3.0.2"
 
-"@cubejs-backend/schema-compiler@^0.26.15":
-  version "0.26.15"
-  resolved "https://registry.yarnpkg.com/@cubejs-backend/schema-compiler/-/schema-compiler-0.26.15.tgz#d0ff075b625b70fcd1d231cbf8fbd07ca899574a"
-  integrity sha512-x8kNFp5Jl/i/+F/S8Op51nwpLyZgZHrDABn4rer+584Ye/KHSCuOsyauLCYyNNee2PWllKvwmc+efCfIZWKkog==
+"@cubejs-backend/schema-compiler@^0.26.16":
+  version "0.26.16"
+  resolved "https://registry.yarnpkg.com/@cubejs-backend/schema-compiler/-/schema-compiler-0.26.16.tgz#51b2e179096db165bd3f96c5a79be6e515626717"
+  integrity sha512-kKOaqYLV43h1fqmSJEovgQ/aU1DWjC3YGZRR7wJIUMuRT6aVijBt9GwoxTZqGIPNWNnSOyDGf/G8msKhje0QUQ==
   dependencies:
     "@babel/code-frame" "^7.12.11"
     "@babel/core" "^7.12.10"
@@ -893,10 +893,10 @@
     ramda "^0.27.0"
     syntax-error "^1.3.0"
 
-"@cubejs-backend/shared@^0.26.15":
-  version "0.26.15"
-  resolved "https://registry.yarnpkg.com/@cubejs-backend/shared/-/shared-0.26.15.tgz#0314be572d63eb17b98f4b3d957c67fe436ca2aa"
-  integrity sha512-Hzc1EPf46yz1bliUkYd6yWN14osPgtF2Z5ee5pbYWOyOrGJzrRVMA6ae9fu1LA9wjcyuJsGFBugYG3lsQR+jNw==
+"@cubejs-backend/shared@^0.26.16":
+  version "0.26.16"
+  resolved "https://registry.yarnpkg.com/@cubejs-backend/shared/-/shared-0.26.16.tgz#ee085325283612663a0ea0e8f39305f7af63f265"
+  integrity sha512-qNVDR5ADcCQYk0yzHLChYgCg/XLox+lyRAP+gBURRwRaWXqsv5Q+X3OwVuUtR+wBp78WCwAz5iG8hDblqknqFw==
   dependencies:
     env-var "^6.3.0"
     node-fetch "^2.6.1"
@@ -1591,10 +1591,10 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
-axios@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
-  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
     follow-redirects "^1.10.0"
 
