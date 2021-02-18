@@ -1,7 +1,7 @@
 FROM rustembedded/cross:x86_64-pc-windows-gnu
 
 RUN apt-get update && \
-    apt-get install -y curl pkg-config wget llvm
+    apt-get install -y curl pkg-config wget llvm libclang-dev
 
 RUN wget https://www.openssl.org/source/openssl-1.1.1i.tar.gz -O - | tar -xz
 WORKDIR /openssl-1.1.1i

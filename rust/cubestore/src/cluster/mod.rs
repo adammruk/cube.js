@@ -1,8 +1,10 @@
 pub mod message;
 pub mod worker_pool;
 
-use crate::cluster::message::NetworkMessage;
+#[cfg(not(target_os = "windows"))]
 use crate::cluster::worker_pool::{MessageProcessor, WorkerPool};
+
+use crate::cluster::message::NetworkMessage;
 use crate::config::injection::DIService;
 use crate::config::{Config, ConfigObj};
 use crate::import::ImportService;
@@ -91,6 +93,7 @@ pub struct ClusterImpl {
     jobs_enabled: Arc<RwLock<bool>>,
     // used just to hold a reference so event_sender won't be collected
     _receiver: Receiver<JobEvent>,
+    #[cfg(not(target_os = "windows"))]
     select_process_pool: RwLock<
         Option<Arc<WorkerPool<WorkerMessage, SerializedRecordBatchStream, WorkerProcessor>>>,
     >,
@@ -437,6 +440,7 @@ impl ClusterImpl {
             event_sender: sender,
             jobs_enabled: Arc::new(RwLock::new(true)),
             _receiver: receiver,
+            #[cfg(not(target_os = "windows"))]
             select_process_pool: RwLock::new(None),
             config_obj,
             query_executor,
@@ -462,6 +466,7 @@ impl ClusterImpl {
     }
 
     pub async fn start_processing_loops(&self) {
+        #[cfg(not(target_os = "windows"))]
         if self.config_obj.select_worker_pool_size() > 0 {
             let mut pool = self.select_process_pool.write().await;
             *pool = Some(Arc::new(WorkerPool::new(
@@ -469,6 +474,7 @@ impl ClusterImpl {
                 Duration::from_secs(self.config_obj.query_timeout()),
             )));
         }
+
         for _ in 0..self.config_obj.job_runners_count() {
             // TODO number of job event loops
             let job_runner = JobRunner {
