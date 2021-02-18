@@ -503,9 +503,12 @@ impl ClusterImpl {
             // TODO number of job event loops
             self.job_notify.notify_waiters();
         }
+
+        #[cfg(not(target_os = "windows"))]
         if let Some(pool) = self.select_process_pool.read().await.as_ref() {
             pool.stop_workers().await?;
         }
+
         self.close_worker_socket_tx.send(true)?;
         Ok(())
     }
