@@ -8,6 +8,7 @@ use crate::cluster::worker_pool::{MessageProcessor, WorkerPool};
 
 use crate::cluster::message::NetworkMessage;
 use crate::config::injection::DIService;
+#[warn(unused_imports)]
 use crate::config::{Config, ConfigObj};
 use crate::import::ImportService;
 use crate::metastore::job::{Job, JobStatus, JobType};
