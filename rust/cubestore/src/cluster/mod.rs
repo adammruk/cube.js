@@ -496,6 +496,7 @@ impl ClusterImpl {
         }
     }
 
+    #[cfg(not(target_os = "windows"))]
     pub async fn stop_processing_loops(&self) -> Result<(), CubeError> {
         let mut jobs_enabled = self.jobs_enabled.write().await;
         *jobs_enabled = false;
