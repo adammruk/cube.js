@@ -1,4 +1,6 @@
 pub mod message;
+
+#[cfg(not(target_os = "windows"))]
 pub mod worker_pool;
 
 #[cfg(not(target_os = "windows"))]
