@@ -496,7 +496,6 @@ impl ClusterImpl {
         }
     }
 
-    #[cfg(not(target_os = "windows"))]
     pub async fn stop_processing_loops(&self) -> Result<(), CubeError> {
         let mut jobs_enabled = self.jobs_enabled.write().await;
         *jobs_enabled = false;
@@ -664,22 +663,38 @@ impl ClusterImpl {
         if warmup.as_millis() > 200 {
             warn!("Warmup download for select ({:?})", warmup);
         }
-        let pool_option = self.select_process_pool.read().await.clone();
-        let res = if let Some(pool) = pool_option {
-            let serialized_plan_node = plan_node.clone();
-            pool.process(WorkerMessage::Select(
-                serialized_plan_node,
-                remote_to_local_names,
-            ))
-            .await
-        } else {
+
+        #[cfg(target_os = "windows")]
+        {
             // TODO optimize for no double conversion
             SerializedRecordBatchStream::write(
                 self.query_executor
                     .execute_worker_plan(plan_node.clone(), remote_to_local_names)
                     .await?,
             )
-        };
+        }
+
+        #[cfg(not(target_os = "windows"))]
+        {
+            let pool_option = self.select_process_pool.read().await.clone();
+
+            let res = if let Some(pool) = pool_option {
+                let serialized_plan_node = plan_node.clone();
+                pool.process(WorkerMessage::Select(
+                    serialized_plan_node,
+                    remote_to_local_names,
+                ))
+                .await
+            } else {
+                // TODO optimize for no double conversion
+                SerializedRecordBatchStream::write(
+                    self.query_executor
+                        .execute_worker_plan(plan_node.clone(), remote_to_local_names)
+                        .await?,
+                )
+            };
+        }
+
         info!("Running select completed ({:?})", start.elapsed()?);
         res
     }
