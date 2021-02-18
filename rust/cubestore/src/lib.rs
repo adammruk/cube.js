@@ -240,6 +240,7 @@ impl From<std::string::FromUtf8Error> for CubeError {
     }
 }
 
+#[cfg(not(target_os = "windows"))]
 impl From<procspawn::SpawnError> for CubeError {
     fn from(v: procspawn::SpawnError) -> Self {
         CubeError::internal(v.to_string())

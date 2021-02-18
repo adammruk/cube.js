@@ -63,7 +63,7 @@ impl CubeServices {
     }
 
     pub async fn stop_processing_loops(&self) -> Result<(), CubeError> {
-        #[cfg(feature = "worker-pool")]
+        #[cfg(not(target_os = "windows"))]
         self.cluster.stop_processing_loops().await?;
 
         self.remote_fs.stop_processing_loops()?;
