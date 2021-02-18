@@ -667,11 +667,14 @@ impl ClusterImpl {
         #[cfg(target_os = "windows")]
         {
             // TODO optimize for no double conversion
-            SerializedRecordBatchStream::write(
+            let res = SerializedRecordBatchStream::write(
                 self.query_executor
                     .execute_worker_plan(plan_node.clone(), remote_to_local_names)
                     .await?,
-            )
+            );
+
+            info!("Running select completed ({:?})", start.elapsed()?);
+            res
         }
 
         #[cfg(not(target_os = "windows"))]
@@ -693,10 +696,10 @@ impl ClusterImpl {
                         .await?,
                 )
             };
-        }
 
-        info!("Running select completed ({:?})", start.elapsed()?);
-        res
+            info!("Running select completed ({:?})", start.elapsed()?);
+            res
+        }
     }
 
     pub async fn try_to_connect(&mut self) -> Result<(), CubeError> {
