@@ -111,9 +111,10 @@ crate::di_service!(ClusterImpl, [Cluster]);
 pub enum WorkerMessage {
     Select(SerializedPlan, HashMap<String, String>),
 }
-
+#[cfg(not(target_os = "windows"))]
 pub struct WorkerProcessor;
 
+#[cfg(not(target_os = "windows"))]
 #[async_trait]
 impl MessageProcessor<WorkerMessage, SerializedRecordBatchStream> for WorkerProcessor {
     async fn process(args: WorkerMessage) -> Result<SerializedRecordBatchStream, CubeError> {
